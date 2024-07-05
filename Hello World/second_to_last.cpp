@@ -8,7 +8,6 @@ int number = 501;
 int second_to_last;
 
 second_to_last = (number / 10) % 10;
-askdljflk
 
 cout << "The second to last number is " << second_to_last << endl;
 
