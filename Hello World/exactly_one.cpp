@@ -18,5 +18,4 @@ int main(){
         cout << "Neither or both of " << x << " and " << y << " are zero.";
     }
 
-
 };
