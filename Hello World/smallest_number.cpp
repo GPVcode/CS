@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-
+// This algorithm finds the smallest number based on inputs.
 int main() {
    int smallest_number = 0;
    int input1, input2, input3;
