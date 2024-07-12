@@ -1,7 +1,7 @@
 #include <iostream>
 
 using namespace std;
-// THis is how to extract the second to last number
+// This is how to extract the second to last number
 int main(){
 
 int number = 501;
