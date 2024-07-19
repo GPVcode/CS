@@ -3,6 +3,14 @@
 #include <iostream> 
 using namespace std; 
 
+// input questions
+	// how many sides for printing?
+	// how many print locations?
+	// how many shirts?
+	// how many colors?
+	// sizes?
+// make a function that calculates the total
+
 int main() 
 { 
 	// initialization expression 
