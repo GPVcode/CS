@@ -12,5 +12,6 @@
         "*.css.liquid": "liquid-css",
         "*.scss.liquid": "liquid-scss",
         "iostream": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
