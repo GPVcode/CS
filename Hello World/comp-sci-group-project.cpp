@@ -1,6 +1,8 @@
 #include <iostream>
+#include <limits> 
 
 using namespace std;
+
 
 // Create three classes
 	// 1. Order class - this class takes the input from customer questions and sends it to order calculator class
@@ -60,6 +62,19 @@ class ShirtOrder {
 
 // };
 
+// inputs in here
+bool isValidInteger(int &input) {
+    cin >> input;
+	cout << endl;
+    if (cin.fail()) {
+        cin.clear(); // Clear error state or else perpetual error state.
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discard the invalid input.
+        return false;
+    }
+    return true;
+}
+
+
 int main(){
 
 	double totalCost = 0.0;
@@ -73,59 +88,68 @@ int main(){
 		int shirtsRemaining;
 
 		// helper function
-		auto shirtsRemainingFunction = [&order](int n) {
-			return order.shirtCount - n;
-		};
+		// auto shirtsRemainingFunction = [&order](int n) {
+		// 	return order.shirtCount - n;
+		// };
 
-		cout << "Do you want to print on both sides? Type yes or no."<< endl;
-		cin >> printBothSidesInput;
+		do{
+			cout << "Do you want to print on both sides? Type yes or no." << endl;
+			cin >> printBothSidesInput;
+			cout << endl;
+			if(printBothSidesInput != "yes" && printBothSidesInput != "no"){
+				cout << "Invalid input. Please type yes or no." << endl << endl;
+			}
+		} while(printBothSidesInput != "yes" & printBothSidesInput != "no");
 		order.printOnBothSides(printBothSidesInput);
 
-		cout << "How many colors are in the print? (Type a number from 1-5.)"<< endl;
-		cin >> colorCountInput;
+		do{
+			cout << "How many colors are in the print? (Type an integer from 1-5.)" << endl;
+			while (!isValidInteger(colorCountInput) || colorCountInput < 1 || colorCountInput > 5){
+				cout << "invalid input. Please type an integer from 1-5" << endl << endl;
+			}
+		} while(colorCountInput < 1 || colorCountInput > 5);
 		order.shirtColorCount(colorCountInput);
 
-		cout << "How many t-shirts do you need? Type a number from 12 or over."<< endl;
-		cin >> shirtCountInput;
+		do{
+			cout << "How many t-shirts do you need? Type a number from 12 or over." << endl;
+			while(!isValidInteger(shirtCountInput) || shirtCountInput < 12){
+				cout << "Please enter a number 12 or over."  << endl << endl;
+			}
+		} while(shirtCountInput < 12);
 		order.shirtOrderCount(shirtCountInput);
 
 		shirtsRemaining = order.shirtCount;
 
 		do{
-			cout << "From the " << shirtCountInput << " shirts, how many small shirts do you need?"<< endl;
-			cin >> smallInput;
-			if(smallInput > shirtsRemaining){
-				cout << "You cannot order more small shirts than available. Please enter a valid number." << endl;
+			cout << "From the " << shirtCountInput << " shirts, how many small shirts do you need?" << endl;
+			while(!isValidInteger(smallInput) || smallInput > shirtsRemaining){
+				cout << "Please enter a valid number. " << shirtsRemaining << " remaining." << endl << endl;
 			}
 		} while(smallInput > shirtsRemaining);
 		order.smallCount(smallInput);
 		shirtsRemaining -= order.small;
 		
 		// shirtsRemaining = shirtsRemainingFunction(order.small);
-
 		do{
 			cout << "From the " << shirtsRemaining << " shirts, how many medium shirts do you need?" << endl;
-			cin >> mediumInput;
-			if(mediumInput > shirtsRemaining){
-				cout << "You cannot order more small shirts than available. Please enter a valid number." << endl;
+			while(!isValidInteger(mediumInput) || mediumInput > shirtsRemaining){
+				cout << "Please enter a valid number. " << shirtsRemaining << " remaining." << endl << endl;
 			}
-		} while(mediumInput > shirtsRemaining);
+		} while( mediumInput > shirtsRemaining);
 		order.mediumCount(mediumInput);
 		shirtsRemaining -= order.medium;
 
 		do{
 			cout << "From the " << shirtsRemaining << " shirts, how many large shirts do you need?" << endl;
-			cin >> largeInput;
-			if(largeInput > shirtsRemaining){
-				cout << "You cannot order more small shirts than available. Please enter a valid number." << endl;
+			while(!isValidInteger(largeInput) || largeInput > shirtsRemaining){
+				cout << "Please enter a valid number. " << shirtsRemaining << " remaining." << endl << endl;
 			}
 		} while(largeInput > shirtsRemaining);
 		order.largeCount(largeInput);
 		shirtsRemaining -= order.large;
 		
-		cout << shirtsRemaining << " remaining shirts will be for XL shirts" << endl;
+		cout << shirtsRemaining << " remaining shirts will be for XL shirts" << endl << endl;
 		order.xlCount(shirtsRemaining);
-		shirtsRemaining -= order.xl;
 
 		// output from 
 		// get info from order class
