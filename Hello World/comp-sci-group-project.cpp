@@ -14,72 +14,141 @@ using namespace std;
 // create pricing class
 // create order class
 // create order calculator class
-main(){
+class ShirtOrder {
+	public: 
+		bool printBothSides;
+		int colorCount;
+		int shirtCount;
+		int small, medium, large, xl;
+		bool shirtSizeSegmentationConfirmation;
+
+		void printOnBothSides(string n){
+			if(n == "yes"){
+				printBothSides = true;
+			} else {
+				printBothSides = false;
+			};
+		};
+		void shirtColorCount(int n){
+			colorCount = n;
+		};
+		void shirtOrderCount(int n){
+			shirtCount = n;
+		};
+		void smallCount(int n){
+			small = n;
+		};
+		void mediumCount(int n){
+			medium = n;
+		};
+		void largeCount(int n){
+			large = n;
+		};
+		void xlCount(int n){
+			xl = n;
+		};
+		void shirtSegmentationConfirmation(string n){
+			if(n == "yes"){
+				shirtSizeSegmentationConfirmation = true;
+			} else{
+				shirtSizeSegmentationConfirmation = false;
+			}
+		}
+};
+
+// class CostCalculator(){
+
+// };
+
+int main(){
 
 	double totalCost = 0.0;
-
-	class ShirtOrder {
-		public: 
-			bool printBothSides;
-			int colorCount;
-			int shirtCount;
-			int small, medium, large, xl;
-
-			void printOnBothSides(string n){
-				if(n == "yes"){
-					printBothSides = true;
-				} else {
-					printBothSides = false;
-				};
-			};
-			void shirtColorCount(int n){
-				colorCount = n;
-			};
-			void shirtCount(int n){
-				shirtCount = n;
-			};
-			void smallCount(int n){
-				small = n;
-			};
-			void mediumCount(int n){
-				medium = n;
-			};
-			void largeCount(int n){
-				large = n;
-			};
-			void xlCount(int n){
-				xl = n;
-			};
-	};
-
-
-	class CostCalculator(){
-
-	};
+	ShirtOrder order;
 
 	do{
-		ShirtOrder
+		string printBothSidesInput;
+		int colorCountInput;
+		int shirtCountInput;
+		int smallInput, mediumInput, largeInput;
+		int shirtsRemaining;
 
-		// Print on both sides?
-		cout << "Do you want to print on both sides?";
-		// How many colors?
-		// How many t-shirts to print?
-		// Out of X shirts, type in how many small (if no more shirts left after the input and calculation, break the loop)
-		// (Subtract from total shirts) out of X(updated shirt count) shirts, type how many medium( if no more shirts left after the input and calculation, break the loop)
-		// (Subtract from total shirts) out of X(updated shirt count) shirts, type how many large shirts (if no more shirts left after the input and calculation, break the loop)
-		// Subtract from total shirts) you want X(updates shirt counts) XL shirts correct?
+		// helper function
+		auto shirtsRemainingFunction = [&order](int n) {
+			return order.shirtCount - n;
+		};
 
-		totalCost = // output from 
+		cout << "Do you want to print on both sides? Type yes or no."<< endl;
+		cin >> printBothSidesInput;
+		order.printOnBothSides(printBothSidesInput);
+
+		cout << "How many colors are in the print? (Type a number from 1-5.)"<< endl;
+		cin >> colorCountInput;
+		order.shirtColorCount(colorCountInput);
+
+		cout << "How many t-shirts do you need? Type a number from 12 or over."<< endl;
+		cin >> shirtCountInput;
+		order.shirtOrderCount(shirtCountInput);
+
+		shirtsRemaining = order.shirtCount;
+
+		do{
+			cout << "From the " << shirtCountInput << " shirts, how many small shirts do you need?"<< endl;
+			cin >> smallInput;
+			if(smallInput > shirtsRemaining){
+				cout << "You cannot order more small shirts than available. Please enter a valid number." << endl;
+			}
+		} while(smallInput > shirtsRemaining);
+		order.smallCount(smallInput);
+		shirtsRemaining -= order.small;
+		
+		// shirtsRemaining = shirtsRemainingFunction(order.small);
+
+		do{
+			cout << "From the " << shirtsRemaining << " shirts, how many medium shirts do you need?" << endl;
+			cin >> mediumInput;
+			if(mediumInput > shirtsRemaining){
+				cout << "You cannot order more small shirts than available. Please enter a valid number." << endl;
+			}
+		} while(mediumInput > shirtsRemaining);
+		order.mediumCount(mediumInput);
+		shirtsRemaining -= order.medium;
+
+		do{
+			cout << "From the " << shirtsRemaining << " shirts, how many large shirts do you need?" << endl;
+			cin >> largeInput;
+			if(largeInput > shirtsRemaining){
+				cout << "You cannot order more small shirts than available. Please enter a valid number." << endl;
+			}
+		} while(largeInput > shirtsRemaining);
+		order.largeCount(largeInput);
+		shirtsRemaining -= order.large;
+		
+		cout << shirtsRemaining << " remaining shirts will be for XL shirts" << endl;
+		order.xlCount(shirtsRemaining);
+		shirtsRemaining -= order.xl;
+
+		// output from 
 		// get info from order class
 		// get info from pricing class
 		// run order calculator
-
+		
+		totalCost = 2;
 	} while(totalCost == 0.0); {
 
+		// cout << "Total cost of the order is: $ " << totalCost << endl;
+		cout << "testing print both sides: " << order.printBothSides << endl;
+		cout << "testing color count: " << order.colorCount << endl;
+		cout << "testing shirt count: " << order.shirtCount << endl;
+		cout << "testing shirt sizes: " << order.small << endl;
+		cout << "testing shirt sizes: " << order.medium << endl;
+		cout << "testing shirt sizes: " << order.large << endl;
+		cout << "testing shirt sizes: " << order.xl << endl;
+		cout << "testing shirt size confirmation: " << order.shirtSizeSegmentationConfirmation << endl;
 
-		cout << "Total cost of the order is: $ " << totalCost << endl;
 
 	};
 
+
 	return 0;
 };
+
