@@ -63,12 +63,12 @@ class ShirtOrder {
 // };
 
 // inputs in here
-bool isValidInteger(int &input) {
+bool isValidInteger(int &input) { //using & symbol ensures consistency
     cin >> input;
 	cout << endl;
     if (cin.fail()) {
         cin.clear(); // Clear error state or else perpetual error state.
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discard the invalid input.
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discard the invalid input. '\n': Stops ignoring characters once a newline character is encountered.
         return false;
     }
     return true;
