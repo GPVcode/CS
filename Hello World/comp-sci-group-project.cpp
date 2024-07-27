@@ -48,28 +48,28 @@ public:
 
 class Pricing {
 public:
-    double column1Prices[6][3] = {
+    double column1Prices[5][3] = {
         {19.69, 19.99, 21.64},
         {20.69, 21.99, 22.64},
         {21.69, 22.99, 23.64},
         {22.69, 23.99, 24.64},
         {23.69, 24.99, 25.64}
     };
-    double column2Prices[6][3] = {
+    double column2Prices[5][3] = {
         {9.69, 9.99, 11.64},
         {11.69, 11.99, 12.64},
         {12.69, 12.99, 13.64},
         {13.69, 13.99, 14.64},
         {14.69, 14.99, 15.64}
     };
-    double column3Prices[6][3] = {
+    double column3Prices[5][3] = {
         {7.70, 8.00, 9.65},
         {9.70, 10.00, 11.65},
         {10.70, 11.00, 12.65},
         {11.70, 12.00, 13.65},
         {12.70, 13.00, 14.65}
     };
-    double column4Prices[6][3] = {
+    double column4Prices[5][3] = {
         {6.70, 7.00, 8.65},
         {8.70, 9.00, 10.65},
         {9.70, 10.00, 11.65},
@@ -107,7 +107,7 @@ public:
             return 0.0;
         }
 
-        if (totalShirts > 300){
+        if (totalShirts >= 300){
             cout << "Please call for your order." << endl;
         }
 
